@@ -8,9 +8,9 @@ export const LoginPage: React.FC = () => {
   const { login } = useApp();
 
   const [phone, setPhone] = useState('+998 90 123 45 67');
-  const [email, setEmail] = useState('sherzod@example.com');
+  const [email, setEmail] = useState('anisa@example.com');
   const [password, setPassword] = useState('password123');
-  const [name, setName] = useState('Sherzod Ro‘ziyev');
+  const [name, setName] = useState('Anisa Karimova');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export const LoginPage: React.FC = () => {
   };
 
   const handleQuickLogin = () => {
-    login('Sherzod Ro‘ziyev', '+998 90 123 45 67', 'sherzod@example.com', 'Toshkent');
+    login('Anisa Karimova', '+998 90 123 45 67', 'anisa@example.com', 'Toshkent');
     navigate('/home');
   };
 

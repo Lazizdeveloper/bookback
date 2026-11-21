@@ -43,13 +43,28 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Load initial states from localStorage or mock
   const [user, setUser] = useState<User | null>(() => {
     const saved = localStorage.getItem('bb_user');
-    return saved ? JSON.parse(saved) : {
-      name: 'Sherzod Ro‘ziyev',
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.name && (parsed.name.includes('Sherzod') || parsed.name.toLowerCase().includes('sherzod'))) {
+          parsed.name = 'Anisa Karimova';
+          parsed.email = 'anisa@example.com';
+          parsed.avatar = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150';
+          localStorage.setItem('bb_user', JSON.stringify(parsed));
+          return parsed;
+        }
+        return parsed;
+      } catch {
+        // fallback
+      }
+    }
+    return {
+      name: 'Anisa Karimova',
       phone: '+998 90 123 45 67',
-      email: 'sherzod@example.com',
+      email: 'anisa@example.com',
       region: 'Toshkent',
-      rating: 4.8,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'
+      rating: 4.9,
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'
     }; // Default logged in for easier demo, can login/logout in UI
   });
 
